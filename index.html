@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Graphql Client</title>
+</head>
+<body>
+
+<script>
+    const qlQuery = async (query, variables = {}) => {
+        const resp = await fetch("http://localhost:4001", {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({query, variables}),
+        });
+        return (await resp.json()).data;
+    };
+
+    (async () => {
+        //Query users
+        console.log(await qlQuery(
+            "{users{id email}}")
+        );
+        // Mutation addUser
+        console.log(await qlQuery(
+            "mutation _($userInput: UserInput) {addUser(user: $userInput) {id email}}",
+            {"userInput": {"email": "user@gmail.com", "password": "pwd"}} //variables need to passed as the second argument
+        ));
+        // Mutation add order
+        console.log(await qlQuery(
+            "mutation {addOrder(itemId:10) {id itemId}}",
+        ));
+    })();
+</script>
+<h2>Simple JavaScript GraphQL client</h2>
+<p>Please see the query responses on your dev console</p>
+</body>
+</html>
