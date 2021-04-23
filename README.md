@@ -1,7 +1,6 @@
-## Setup
-
 Reference https://www.apollographql.com/docs/tutorial/introduction/
 
+## Setup
 
 ```shell
 npm install
@@ -26,4 +25,9 @@ curl http://localhost:4001  \
 curl http://localhost:4001 \
     -H 'Content-Type: application/json'   \
     -d '{"query":"mutation {addOrder(itemId:10) {id itemId}}"}'
+```
+
+## GraphQL client
+```shell
+npx http-server ./qlClient
 ```
