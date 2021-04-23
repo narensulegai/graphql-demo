@@ -27,7 +27,6 @@ const typeDefs = gql`
 
 const users = [];
 const orders = [];
-
 // A map of functions which return data for the schema.
 const resolvers = {
     Query: {

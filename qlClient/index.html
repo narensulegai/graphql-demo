@@ -22,9 +22,10 @@
             "{users{id email}}")
         );
         // Mutation addUser
+        const newUser = {"email": "user@gmail.com", "password": "pwd"};
         console.log(await qlQuery(
-            "mutation _($userInput: UserInput) {addUser(user: $userInput) {id email}}",
-            {"userInput": {"email": "user@gmail.com", "password": "pwd"}} //variables need to passed as the second argument
+            "mutation _($userInput: UserInput) {addUser(user: $userInput) {id email}}", // POST /user/id
+            {"userInput": newUser} //variables need to passed as the second argument // Body {users{id email}}
         ));
         // Mutation add order
         console.log(await qlQuery(
